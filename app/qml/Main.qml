@@ -45,7 +45,7 @@ Window {
     height: Math.min(OrchardWindowState.initialHeight, OrchardWindowState.availableHeight)
     minimumWidth: Math.min(900, OrchardWindowState.availableWidth)
     minimumHeight: Math.min(600, OrchardWindowState.availableHeight)
-    title: qsTr("Orchard")
+    title: qsTr("Nebula Player")
     Component.onCompleted: {
         if (OrchardWindowState.initialMaximized)
             mainWindow.showMaximized();

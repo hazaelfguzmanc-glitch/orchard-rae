@@ -65,7 +65,7 @@ Item {
         Text {
             id: appTitle
             anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Orchard")
+            text: qsTr("Nebula Player")
             color: "#ffffff"
             font.pixelSize: 32
             font.weight: Font.Bold

@@ -171,9 +171,9 @@ int main(int argc, char *argv[]) {
   mallopt(M_ARENA_MAX, 2);
 #endif
 
-  QCoreApplication::setOrganizationDomain(QStringLiteral("sfg.dev"));
-  QCoreApplication::setOrganizationName(QStringLiteral("SFG545"));
-  QCoreApplication::setApplicationName(QStringLiteral("Orchard"));
+  QCoreApplication::setOrganizationDomain(QStringLiteral("nebula.local"));
+  QCoreApplication::setOrganizationName(QStringLiteral("Nebula"));
+  QCoreApplication::setApplicationName(QStringLiteral("NebulaPlayer"));
   UiScaling::configure();
 
   // QApplication for QSystemTrayIcon, whose menus are still widgets in 2026.

@@ -309,6 +309,10 @@ PlaybackController::PlaybackController(YouTubeProvider *provider,
                   m_home->setVolume(value.toDouble());
                 }
               }
+              // La tecla tiene que reflejarse YA en el panel del escritorio, sin
+              // esperar a que QMediaPlayer emita su cambio de estado: con la
+              // ventana sin foco ese aviso puede tardar hasta un segundo.
+              updateSystemMedia();
             });
   }
 }

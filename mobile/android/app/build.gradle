@@ -82,7 +82,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = 'dev.sfg.orchard.mobile'
+        applicationId = 'dev.nebula.player'
         minSdk = orchardMinSdk
         targetSdk = 36
         versionCode = 20010
