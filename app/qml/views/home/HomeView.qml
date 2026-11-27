@@ -236,6 +236,8 @@ Item {
         }
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Refresh")
             visible: !OrchardHome.loading

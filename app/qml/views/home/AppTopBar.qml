@@ -40,6 +40,8 @@ Item {
     }
 
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: account
 
         anchors.right: parent.right

@@ -87,6 +87,20 @@ Item {
             OrchardHome.volume = value;
     }
 
+    // Mute remembers the level so the second press brings the music back.
+    property real volumeBeforeMute: 0.5
+
+    readonly property bool muted: volumeLevel <= 0.001
+
+    function toggleMute() {
+        if (!muted) {
+            volumeBeforeMute = volumeLevel;
+            setVolumeLevel(0);
+        } else {
+            setVolumeLevel(volumeBeforeMute > 0.001 ? volumeBeforeMute : 0.5);
+        }
+    }
+
     function refreshBackdrop() {
         glass.refresh();
     }

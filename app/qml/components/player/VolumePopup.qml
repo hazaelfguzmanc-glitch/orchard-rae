@@ -17,31 +17,38 @@
  * along with Orchard. If not, see <https://www.gnu.org/licenses/>.
  */
 
+import Orchard
 import QtQuick
 import QtQuick.Controls
 
 // Vertical volume slider that opens below the player bar volume button.
 Popup {
     id: root
+    transformOrigin: Popup.Top
+    enter: Transition {
+        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+    }
+    exit: Transition {
+        NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+        NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+    }
 
     // The player bar owns the colours and the volume helpers.
     required property Item bar
 
-    width: 44
-    height: 164
+    property bool pointerInside: false
+    HoverHandler { onHoveredChanged: root.pointerInside = hovered }
+
+    width: 168
+    height: 44
     padding: 0
-    x: (parent.width - width) / 2
-    y: parent.height + 8
+    x: parent.width - width
+    y: -height - 8
     // Presses on the volume button toggle the popup instead of dismissing it.
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
-    enter: Transition {
-        NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 120; easing.type: Easing.OutCubic }
-    }
 
-    exit: Transition {
-        NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 100; easing.type: Easing.InCubic }
-    }
 
     background: Rectangle {
         radius: 14
@@ -55,9 +62,9 @@ Popup {
             id: slider
 
             anchors.fill: parent
-            anchors.topMargin: 14
-            anchors.bottomMargin: 14
-            orientation: Qt.Vertical
+            anchors.leftMargin: 14
+            anchors.rightMargin: 14
+            orientation: Qt.Horizontal
             from: 0
             to: 1
             stepSize: 0.01
@@ -83,16 +90,16 @@ Popup {
                 height: slider.availableHeight
 
                 Rectangle {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    width: 4
-                    height: parent.height
-                    radius: width / 2
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: parent.width
+                    height: 4
+                    radius: height / 2
                     color: root.bar.trackColor
 
                     Rectangle {
-                        anchors.bottom: parent.bottom
-                        width: parent.width
-                        height: slider.position * parent.height
+                        anchors.left: parent.left
+                        width: slider.position * parent.width
+                        height: parent.height
                         radius: parent.radius
                         color: root.bar.accentColor
                     }
@@ -100,8 +107,8 @@ Popup {
             }
 
             handle: Rectangle {
-                x: slider.leftPadding + slider.availableWidth / 2 - width / 2
-                y: slider.topPadding + slider.visualPosition * (slider.availableHeight - height)
+                x: slider.leftPadding + slider.visualPosition * (slider.availableWidth - width)
+                y: slider.topPadding + slider.availableHeight / 2 - height / 2
                 width: 12
                 height: 12
                 radius: width / 2

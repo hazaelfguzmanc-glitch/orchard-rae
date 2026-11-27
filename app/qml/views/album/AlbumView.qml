@@ -185,6 +185,8 @@ Item {
         spacing: 14
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: backButton
 
             width: 132

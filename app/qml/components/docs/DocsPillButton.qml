@@ -24,6 +24,8 @@ import ".."
 
 // Flat action button with a leading icon, tinted on hover like a nav row. Swaps to a check mark when done.
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: control
     property string iconName
     property bool done: false

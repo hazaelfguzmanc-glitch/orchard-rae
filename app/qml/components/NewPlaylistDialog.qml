@@ -27,6 +27,15 @@ import QtQuick.Layouts
 // Created on demand, destroyed on close.
 Popup {
     id: root
+    transformOrigin: Popup.Top
+    enter: Transition {
+        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+    }
+    exit: Transition {
+        NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+        NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+    }
 
     property var track: ({})
     // "service" (YouTube Music or Apple Music, whichever is the catalog source) or "local".
@@ -81,13 +90,7 @@ Popup {
         color: "#80000000"
     }
 
-    enter: Transition {
-        NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 160; easing.type: Easing.OutCubic }
-    }
 
-    exit: Transition {
-        NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 120; easing.type: Easing.InCubic }
-    }
 
     background: Rectangle {
         color: OrchardAppearance.popupColor
@@ -98,6 +101,8 @@ Popup {
 
     // One half of the source switch. A song can only live in its own kind of playlist.
     component SourceChoice: Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: choice
 
         property string value
@@ -177,6 +182,8 @@ Popup {
             spacing: 8
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: cancelButton
 
                 text: qsTr("Cancel")
@@ -200,6 +207,8 @@ Popup {
 
             // Local playlists usually start from a pile of files, so offer to pick them straight away.
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: withSongsButton
 
                 visible: root.local && !root.hasSeed
@@ -223,6 +232,8 @@ Popup {
             }
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: createButton
 
                 text: qsTr("Create")

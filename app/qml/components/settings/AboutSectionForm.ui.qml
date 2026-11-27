@@ -175,7 +175,7 @@ ColumnLayout {
                     spacing: 4
 
                     Text {
-                        text: qsTr("Nebula Player")
+                        text: qsTr("Nebula Music")
                         color: "#f0eee7"
                         font.family: "Inter"
                         font.pixelSize: 22

@@ -61,6 +61,8 @@ Rectangle {
         }
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: captureButton
             implicitHeight: 36
             leftPadding: 16
@@ -84,6 +86,8 @@ Rectangle {
         }
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: cancelButton
             implicitHeight: 36
             text: qsTr("Cancel")

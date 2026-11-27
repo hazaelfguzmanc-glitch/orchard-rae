@@ -144,7 +144,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 width: 32
                 height: 32
-                source: "../../assets/orchard-logo.png"
+                source: "../../assets/nebula-music.png"
                 sourceSize: Qt.size(64, 64)
                 fillMode: Image.PreserveAspectFit
             }
@@ -183,6 +183,8 @@ Item {
             }]
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: nav
 
                 required property var modelData
@@ -253,6 +255,8 @@ Item {
 
         // Opens the catalog-service-or-local chooser. The dialog destroys itself on close.
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: newPlaylistButton
 
             width: parent.width

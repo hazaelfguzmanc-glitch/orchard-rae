@@ -157,6 +157,8 @@ Item {
     }
 
     component IconButton: Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: iconButton
         property string glyph
         property color glyphColor: root.secondaryText
@@ -311,6 +313,8 @@ Item {
                     QueueBestMixButton { panel: root; count: root.queue.length }
 
                     Button {
+
+                        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                         id: clearBtn
                         objectName: "clearQueue"
                         text: qsTr("Clear")

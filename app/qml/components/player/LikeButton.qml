@@ -24,6 +24,8 @@ import Orchard
 
 // Likes the playing song on YouTube Music, or loves it on Apple Music.
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: root
 
     property color iconColor: "#d8dcd6"

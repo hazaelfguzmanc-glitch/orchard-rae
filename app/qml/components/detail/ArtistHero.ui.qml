@@ -317,6 +317,10 @@ Item {
                 ToolTip.text: qsTr("Shuffle")
             }
             Button {
+
+                HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: playButton
                 width: root.compact ? 52 : 60
                 height: width
@@ -356,6 +360,10 @@ Item {
 
     // Opens the full music video; HomeScene grows it out of this header.
     Button {
+
+        HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: watchButton
         visible: root.videoTitle.length > 0 && !root.compact
         x: root.width - width - 32

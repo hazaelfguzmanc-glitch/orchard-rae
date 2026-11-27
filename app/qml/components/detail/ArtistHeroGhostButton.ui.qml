@@ -23,6 +23,10 @@ import QtQuick.Controls
 
 // Round translucent action button on the artist banner.
 Button {
+
+    HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: ghost
 
     property string glyph: "shuffle"

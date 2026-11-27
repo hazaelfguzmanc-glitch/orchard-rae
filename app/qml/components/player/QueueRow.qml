@@ -155,6 +155,8 @@ Item {
         }
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: song
             objectName: "queuedSong"
             Layout.fillWidth: true
@@ -286,6 +288,8 @@ Item {
             }
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: removeBtn
                 objectName: "removeQueuedSong"
                 anchors.centerIn: parent

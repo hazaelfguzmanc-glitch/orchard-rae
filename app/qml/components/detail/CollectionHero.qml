@@ -17,6 +17,7 @@
  * along with Orchard. If not, see <https://www.gnu.org/licenses/>.
  */
 
+import Orchard
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Effects
@@ -80,6 +81,8 @@ Item {
     implicitHeight: card.height
 
     component GhostButton: Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: ghost
         property string glyph
         property color glyphColor: "#eef0ec"
@@ -241,6 +244,8 @@ Item {
             spacing: 8
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: playButton
                 width: playRow.implicitWidth + 36
                 height: 40
@@ -327,14 +332,6 @@ Item {
                     onTapped: root.shareOpenRequested()
                 }
             }
-            GhostButton {
-                visible: root.searchable
-                glyph: "search"
-                enabled: root.actionsEnabled
-                Accessible.name: qsTr("Find in %1").arg(root.kind.toLowerCase())
-                ToolTip.text: qsTr("Find in %1 (or just start typing)").arg(root.kind.toLowerCase())
-                onClicked: root.searchClicked()
-            }
         }
 
         Item { width: 1; height: descriptionText.visible ? 20 : 0 }
@@ -381,6 +378,15 @@ Item {
 
     Menu {
         id: downloadMenu
+        transformOrigin: Popup.Top
+        enter: Transition {
+            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+            NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        }
+        exit: Transition {
+            NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+            NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+        }
         width: 210
         padding: 5
         background: Rectangle { color: Qt.lighter(OrchardAppearance.popupColor, 1.25); radius: 8; border.color: "#24ffffff" }

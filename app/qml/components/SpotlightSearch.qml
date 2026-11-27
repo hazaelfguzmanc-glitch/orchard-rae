@@ -27,6 +27,15 @@ import "home"
 
 Popup {
     id: root
+    transformOrigin: Popup.Top
+    enter: Transition {
+        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+    }
+    exit: Transition {
+        NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+        NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+    }
 
     required property Item backdrop
 
@@ -58,45 +67,8 @@ Popup {
         color: "#75000000"
     }
 
-    // Silky smooth entrance: fade + gentle scale up
-    enter: Transition {
-        ParallelAnimation {
-            NumberAnimation {
-                property: "opacity"
-                from: 0.0
-                to: 1.0
-                duration: 220
-                easing.type: Easing.OutCubic
-            }
-            NumberAnimation {
-                property: "scale"
-                from: 0.96
-                to: 1.0
-                duration: 220
-                easing.type: Easing.OutCubic
-            }
-        }
-    }
 
     // Graceful exit: fade + slight shrink
-    exit: Transition {
-        ParallelAnimation {
-            NumberAnimation {
-                property: "opacity"
-                from: 1.0
-                to: 0.0
-                duration: 180
-                easing.type: Easing.InCubic
-            }
-            NumberAnimation {
-                property: "scale"
-                from: 1.0
-                to: 0.96
-                duration: 180
-                easing.type: Easing.InCubic
-            }
-        }
-    }
 
     background: Loader {
         active: root.visible
@@ -415,6 +387,8 @@ Popup {
             }
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: clearBtn
                 Layout.preferredWidth: 28
                 Layout.preferredHeight: 28

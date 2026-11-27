@@ -25,6 +25,8 @@ import QtQuick.Layouts
 
 // Best Mix action with analysis progress.
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: bestMix
     required property var panel
     property int count: 0

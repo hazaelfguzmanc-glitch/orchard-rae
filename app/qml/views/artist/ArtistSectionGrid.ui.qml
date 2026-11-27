@@ -59,6 +59,10 @@ GridView {
         height: grid.loading || grid.errorMessage ? 158 : 110
 
         Button {
+
+            HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: gridBack
 
             y: 14
@@ -133,6 +137,10 @@ GridView {
                 font.pixelSize: 12
             }
             Button {
+
+                HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 visible: !!grid.errorMessage
                 text: qsTr("Try again")
                 onClicked: grid.retryRequested()

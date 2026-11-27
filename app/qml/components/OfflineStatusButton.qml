@@ -23,6 +23,8 @@ import QtQuick.Controls
 
 // Top bar pill for the retry window and offline mode; clicking it retries.
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: root
 
     readonly property bool shown: OrchardNetwork.offline || OrchardNetwork.retrying

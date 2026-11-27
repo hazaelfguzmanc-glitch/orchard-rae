@@ -78,6 +78,8 @@ RowLayout {
             spacing: 2
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: songMode
 
                 text: qsTr("Song")
@@ -88,6 +90,8 @@ RowLayout {
             }
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: videoMode
 
                 text: qsTr("Video")

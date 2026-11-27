@@ -24,6 +24,8 @@ import QtQuick.Controls
 // OrchardConnect is a context property from main.cpp.
 // qmllint disable unqualified
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: root
 
     required property Item backdrop

@@ -77,6 +77,8 @@ Rectangle {
     }
 
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: clearButton
 
         anchors.right: parent.right
@@ -103,6 +105,8 @@ Rectangle {
     }
 
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: spotlightButton
 
         anchors.fill: parent

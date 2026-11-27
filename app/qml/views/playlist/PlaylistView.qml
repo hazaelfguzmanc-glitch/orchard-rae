@@ -188,27 +188,27 @@ Item {
     }
 
     // Wide: pinned left panel. Compact: stacked in the list header (see heroSlot).
-    DetailFlickable {
+    Item {
         id: sideScroll
 
         x: root.pageInset
         width: root.sideWidth
         height: parent.height
         visible: !root.compact
-        contentWidth: width
-        contentHeight: sideColumn.height + 28
-        topMargin: 14
+        clip: true
     }
 
     Column {
         id: sideColumn
 
-        parent: root.compact && scroll.headerItem ? scroll.headerItem.slot : sideScroll.contentItem
+        parent: root.compact && scroll.headerItem ? scroll.headerItem.slot : sideScroll
         y: root.compact ? 0 : 14
         width: root.compact ? root.width - root.pageInset * 2 : root.sideWidth
         spacing: 14
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: backButton
             width: 132
             height: 34

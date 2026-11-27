@@ -23,6 +23,10 @@ import QtQuick.Controls
 
 // Round glyph button used across the fullscreen player.
 Button {
+
+    HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: roundButton
     property color accentColor: "#f0eee7"
     property color primaryText: "#f7f5f0"

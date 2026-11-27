@@ -17,6 +17,7 @@
  * along with Orchard. If not, see <https://www.gnu.org/licenses/>.
  */
 
+import Orchard
 import ".."
 import QtQuick
 import QtQuick.Controls
@@ -24,6 +25,8 @@ import QtQuick.Layouts
 
 // Moon button with a duration menu for OrchardSleep.
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: root
 
     property color accentColor: "#f0eee7"
@@ -86,6 +89,15 @@ Button {
 
     Popup {
         id: menu
+        transformOrigin: Popup.Top
+        enter: Transition {
+            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+            NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        }
+        exit: Transition {
+            NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+            NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+        }
         y: root.height + 6
         x: root.width - width
         width: 176
@@ -141,6 +153,8 @@ Button {
 
     // Menu row.
     component SleepOption: Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: option
         property bool danger: false
         signal triggered()

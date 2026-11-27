@@ -35,6 +35,8 @@ RowLayout {
         model: bar.compact ? ["skip-back", "play", "skip-forward"] : ["shuffle", "skip-back", "play", "skip-forward", "repeat"]
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: transportButton
 
             required property string modelData

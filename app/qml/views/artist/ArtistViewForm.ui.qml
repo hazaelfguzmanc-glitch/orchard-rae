@@ -340,6 +340,10 @@ Item {
                     }
 
                     Button {
+
+                        HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+                        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                         id: moreButton
 
                         visible: aboutText.truncated || aboutText.expanded
@@ -375,6 +379,10 @@ Item {
 
         // Floats above the content so a bled hero can slide underneath it.
         Button {
+
+            HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: backButton
 
             // Sits in the top bar's row, left of the search field.

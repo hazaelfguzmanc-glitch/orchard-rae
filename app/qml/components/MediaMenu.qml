@@ -24,19 +24,19 @@ import "mediaNavigation.js" as Navigation
 
 Menu {
     id: root
+    transformOrigin: Popup.Top
+    enter: Transition {
+        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+    }
+    exit: Transition {
+        NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+        NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+    }
     Component.onCompleted: configurePopup(root)
     width: 210
     padding: 5
     background: Rectangle { color: Qt.lighter(OrchardAppearance.popupColor, 1.25); radius: 8; border.color: "#24ffffff" }
-    // Grow from the click point so the menu reads as coming from the cursor.
-    transformOrigin: Popup.TopLeft
-    enter: Transition {
-        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.fast; easing.type: Motion.enter }
-        NumberAnimation { property: "scale"; from: 0.94; to: 1; duration: Motion.normal; easing.type: Motion.enter }
-    }
-    exit: Transition {
-        NumberAnimation { property: "opacity"; to: 0; duration: Motion.fast; easing.type: Motion.exit }
-    }
     component Entry: MenuItem {
         id: entry
         implicitHeight: 36
@@ -249,7 +249,6 @@ Menu {
         width: 230
         padding: 5
         background: Rectangle { color: Qt.lighter(OrchardAppearance.popupColor, 1.25); radius: 8; border.color: "#24ffffff" }
-        transformOrigin: Popup.TopLeft
         enter: Transition {
             NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.fast; easing.type: Motion.enter }
             NumberAnimation { property: "scale"; from: 0.94; to: 1; duration: Motion.normal; easing.type: Motion.enter }

@@ -100,6 +100,8 @@ Item {
         }
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Try again")
             onClicked: root.retryRequested()

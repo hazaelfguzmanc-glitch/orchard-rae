@@ -24,6 +24,8 @@ import QtQuick.Controls
 
 // Header actions and category filters.
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: root
 
     property string iconName

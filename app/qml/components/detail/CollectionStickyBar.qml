@@ -66,6 +66,8 @@ Item {
         HoverHandler { cursorShape: Qt.PointingHandCursor }
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: play
             x: 10
             width: 40

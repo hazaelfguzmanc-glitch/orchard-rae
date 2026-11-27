@@ -23,7 +23,15 @@
 
 QIcon appIcon()
 {
-    QImageReader reader(QStringLiteral(":/qt/qml/Orchard/app/qml/assets/orchard-logo.png"));
-    reader.setScaledSize(QSize(128, 128));
-    return QIcon(QPixmap::fromImage(reader.read()));
+    QIcon icon;
+    static const int sizes[] = {16, 24, 32, 48, 64, 128, 256, 512};
+    for (int size : sizes) {
+        QImageReader reader(QStringLiteral(":/qt/qml/Orchard/app/qml/assets/nebula-music.png"));
+        reader.setScaledSize(QSize(size, size));
+        const QImage image = reader.read();
+        if (!image.isNull()) {
+            icon.addPixmap(QPixmap::fromImage(image));
+        }
+    }
+    return icon;
 }

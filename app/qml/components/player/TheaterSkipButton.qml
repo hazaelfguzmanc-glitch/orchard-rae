@@ -24,6 +24,8 @@ import QtQuick.Controls
 
 // SponsorBlock skip offer over the picture, shown while the playhead is in a marked span.
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: root
 
     readonly property var segment: OrchardPlayback.nonMusicSegment

@@ -84,6 +84,8 @@ Rectangle {
             }
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: retryAutoplay
                 visible: Boolean(OrchardPlayback.autoplayError)
                 text: qsTr("Retry")

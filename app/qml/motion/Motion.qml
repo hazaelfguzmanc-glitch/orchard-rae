@@ -37,4 +37,8 @@ QtObject {
     // Wait before the loading hairline appears, and one sweep of it.
     readonly property int loadDelay: 150
     readonly property int sweep: 1100
+    // Popovers zoom in from 80% at the top edge, the Telegram Web motion.
+    readonly property int popoverIn: 200
+    readonly property int popoverOut: 150
+    readonly property real popoverFrom: 0.8
 }

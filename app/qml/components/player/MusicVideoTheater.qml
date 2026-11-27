@@ -157,6 +157,8 @@ Rectangle {
         }
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: recoverButton
 
             Layout.alignment: Qt.AlignHCenter

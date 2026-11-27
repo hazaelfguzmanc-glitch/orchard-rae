@@ -160,6 +160,8 @@ ColumnLayout {
             }
         }
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: clearButton
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter

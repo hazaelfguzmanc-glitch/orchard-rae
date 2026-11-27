@@ -68,6 +68,8 @@ Item {
     }
     component Panel: Rectangle { radius: 13; color: "#10ffffff"; border.color: "#14ffffff" }
     component Options: Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: options
         property var media: ({})
         width: 26; height: 32
@@ -93,6 +95,8 @@ Item {
         Repeater {
             model: root.filters
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: tab
                 required property var modelData
                 implicitWidth: tabText.implicitWidth + 30; height: 32
@@ -128,6 +132,8 @@ Item {
             Panel {
                 width: parent.width; height: root.width > 1000 ? 174 : 154; visible: root.filter === "all"
                 Button {
+
+                    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                     id: hero
                     anchors.fill: parent; anchors.margins: 12
                     onClicked: root.activate(root.topResult, "")
@@ -183,6 +189,8 @@ Item {
                             height: !tiles && root.filter === "all" ? 320 : results.y + results.height + 10
                             Caption { x: 12; y: 10; text: panel.modelData.title; font.pixelSize: 18; font.weight: Font.DemiBold }
                             Button {
+
+                                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                                 id: viewAll
                                 anchors.right: parent.right; anchors.rightMargin: 10; y: 8; height: 26
                                 visible: root.filter === "all"
@@ -251,6 +259,8 @@ Item {
                                         width: results.entryWidth
                                         height: results.entryHeight
                                         Button {
+
+                                            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                                             id: itemButton
                                             anchors.fill: parent; padding: 0
                                             onClicked: root.activate(entry.modelData, panel.modelData.key)

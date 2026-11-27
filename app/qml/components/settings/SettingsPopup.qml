@@ -25,6 +25,15 @@ import ".."
 // Settings window shell and transitions. The panel lives in SettingsPanel.ui.qml.
 Popup {
     id: root
+    transformOrigin: Popup.Top
+    enter: Transition {
+        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+    }
+    exit: Transition {
+        NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+        NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+    }
     // Docs live in their own popup; the shell closes this one and opens it.
     signal docsRequested
     // Same deal for bug reports: the shell swaps this popup for the report one.
@@ -62,19 +71,7 @@ Popup {
 
     onClosed: panel.searchField.text = ""
 
-    enter: Transition {
-        ParallelAnimation {
-            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 220; easing.type: Easing.OutCubic }
-            NumberAnimation { property: "scale"; from: 0.94; to: 1.0; duration: 380; easing.type: Easing.OutQuint }
-        }
-    }
 
-    exit: Transition {
-        ParallelAnimation {
-            NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 160; easing.type: Easing.InCubic }
-            NumberAnimation { property: "scale"; from: 1.0; to: 0.97; duration: 160; easing.type: Easing.InCubic }
-        }
-    }
 
     background: Rectangle {
         radius: 12

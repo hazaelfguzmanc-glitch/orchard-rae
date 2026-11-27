@@ -25,6 +25,15 @@ import QtQuick.Controls
 // close, which would take a picker built from their components down with them.
 Menu {
     id: root
+    transformOrigin: Popup.Top
+    enter: Transition {
+        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+    }
+    exit: Transition {
+        NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+        NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+    }
 
     property var track: ({})
     // Songs from this computer can only join playlists on this computer.
@@ -88,6 +97,8 @@ Menu {
                 border.color: searchField.activeFocus ? OrchardAppearance.accent : "#24ffffff"
             }
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: clearButton
                 objectName: "clearPlaylistFilter"
                 anchors.right: parent.right
@@ -122,15 +133,6 @@ Menu {
         }
     }
     background: Rectangle { color: Qt.lighter(OrchardAppearance.popupColor, 1.25); radius: 8; border.color: "#24ffffff" }
-    // Grow from the click point. Menus that just appear are how you get jump scares in a music app.
-    transformOrigin: Popup.TopLeft
-    enter: Transition {
-        NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.fast; easing.type: Motion.enter }
-        NumberAnimation { property: "scale"; from: 0.94; to: 1; duration: Motion.normal; easing.type: Motion.enter }
-    }
-    exit: Transition {
-        NumberAnimation { property: "opacity"; to: 0; duration: Motion.fast; easing.type: Motion.exit }
-    }
 
     component Entry: MenuItem {
         id: entry

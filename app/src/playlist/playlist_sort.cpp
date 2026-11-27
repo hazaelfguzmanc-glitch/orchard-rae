@@ -25,9 +25,9 @@
 
 namespace {
 bool isSortKey(const QString &key) {
-  return key.isEmpty() || key == QStringLiteral("title") ||
-         key == QStringLiteral("artist") || key == QStringLiteral("album") ||
-         key == QStringLiteral("duration");
+  return key.isEmpty() || key == QStringLiteral("added") ||
+         key == QStringLiteral("title") || key == QStringLiteral("artist") ||
+         key == QStringLiteral("album") || key == QStringLiteral("duration");
 }
 
 QString sortText(const QVariantMap &track, const QString &key) {
@@ -77,6 +77,14 @@ QVariantList PlaylistController::sortedTracks(const QVariantList &source) const 
     return source;
 
   const auto count = source.size();
+  // Playlist order is the order the provider stored, which is the order tracks
+  // were added; only the direction is meaningful here.
+  if (m_sortKey == QStringLiteral("added")) {
+    QVariantList ordered = source;
+    if (m_sortDescending)
+      std::reverse(ordered.begin(), ordered.end());
+    return ordered;
+  }
   const bool byDuration = m_sortKey == QStringLiteral("duration");
   QList<QString> texts(byDuration ? 0 : count);
   QList<double> seconds(byDuration ? count : 0);

@@ -24,6 +24,8 @@ import ".."
 
 // Round edge arrow that fades in while its rail is hovered.
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: root
 
     property int direction: 1

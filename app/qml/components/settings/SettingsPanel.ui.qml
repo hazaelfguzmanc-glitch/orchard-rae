@@ -113,7 +113,7 @@ RowLayout {
 
                     Text {
                         Layout.fillWidth: true
-                        text: profileButton.profileName || qsTr("Nebula Player")
+                        text: profileButton.profileName || qsTr("Nebula Music")
                         color: "#ffffff"
                         font.family: "Inter"
                         font.pixelSize: 15

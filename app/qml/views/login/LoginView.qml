@@ -48,7 +48,7 @@ Item {
                 anchors.centerIn: parent
                 width: 60
                 height: 60
-                source: "qrc:/qt/qml/Orchard/app/qml/assets/orchard-logo.png"
+                source: "qrc:/qt/qml/Orchard/app/qml/assets/nebula-music.png"
                 sourceSize: Qt.size(128, 128)
                 fillMode: Image.PreserveAspectFit
                 smooth: true
@@ -65,7 +65,7 @@ Item {
         Text {
             id: appTitle
             anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Nebula Player")
+            text: qsTr("Nebula Music")
             color: "#ffffff"
             font.pixelSize: 32
             font.weight: Font.Bold

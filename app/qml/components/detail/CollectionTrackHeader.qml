@@ -17,6 +17,7 @@
  * along with Orchard. If not, see <https://www.gnu.org/licenses/>.
  */
 
+import Orchard
 import QtQuick
 import QtQuick.Controls
 import ".."
@@ -54,7 +55,7 @@ Item {
     }
 
     function sortName(key) {
-        return ({"": qsTr("Custom order"), title: qsTr("Title"), artist: qsTr("Artist"),
+        return ({"": qsTr("Custom order"), added: qsTr("Date added"), title: qsTr("Title"), artist: qsTr("Artist"),
                  album: qsTr("Album"), duration: qsTr("Duration")})[key] || "";
     }
 
@@ -199,12 +200,22 @@ Item {
 
     Menu {
         id: sortMenu
+        transformOrigin: Popup.Top
+        enter: Transition {
+            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+            NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        }
+        exit: Transition {
+            NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+            NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+        }
         width: 190
         padding: 5
         // Keep in the scene like MediaMenu so it matches on every desktop.
         Component.onCompleted: if ("popupType" in sortMenu) sortMenu["popupType"] = 0
         background: Rectangle { color: Qt.lighter(OrchardAppearance.popupColor, 1.25); radius: 8; border.color: "#24ffffff" }
         SortEntry { key: "" }
+        SortEntry { key: "added" }
         SortEntry { key: "title" }
         SortEntry { key: "artist" }
         SortEntry { key: "album" }

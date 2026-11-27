@@ -39,6 +39,8 @@ Flow {
     spacing: 8
 
     component Action: Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: action
 
         property string glyph
@@ -88,6 +90,15 @@ Flow {
     // One small popup for renaming. A playlist called "New playlist (2)" deserves better.
     Popup {
         id: renamePopup
+        transformOrigin: Popup.Top
+        enter: Transition {
+            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+            NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        }
+        exit: Transition {
+            NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+            NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+        }
 
         function openWith(title) {
             nameField.text = title;
@@ -143,6 +154,15 @@ Flow {
 
     Popup {
         id: deletePopup
+        transformOrigin: Popup.Top
+        enter: Transition {
+            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+            NumberAnimation { property: "scale"; from: Motion.popoverFrom; to: 1; duration: Motion.popoverIn; easing.type: Motion.enter }
+        }
+        exit: Transition {
+            NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Motion.popoverOut; easing.type: Motion.exit }
+            NumberAnimation { property: "scale"; from: 1; to: Motion.popoverFrom; duration: Motion.popoverOut; easing.type: Motion.exit }
+        }
 
         parent: Overlay.overlay
         anchors.centerIn: parent
@@ -179,11 +199,15 @@ Flow {
                 spacing: 8
 
                 Button {
+
+                    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                     text: qsTr("Cancel")
                     flat: true
                     onClicked: deletePopup.close()
                 }
                 Button {
+
+                    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                     text: qsTr("Delete")
                     onClicked: {
                         deletePopup.close();

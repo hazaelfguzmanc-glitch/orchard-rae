@@ -93,6 +93,10 @@ ColumnLayout {
         Item { Layout.fillWidth: true }
 
         Button {
+
+            HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: clearButton
             objectName: "clearFullscreenQueue"
             text: qsTr("Clear")

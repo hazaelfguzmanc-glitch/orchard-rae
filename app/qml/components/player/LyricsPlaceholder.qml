@@ -67,6 +67,8 @@ ColumnLayout {
     }
 
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: retry
         Layout.alignment: Qt.AlignHCenter
         visible: OrchardLyrics.status === "unavailable"

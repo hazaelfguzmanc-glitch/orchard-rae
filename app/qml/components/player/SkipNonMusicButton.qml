@@ -25,6 +25,8 @@ import Orchard
 // Offers to hop over a talking intro, skit or applause that SponsorBlock volunteers marked.
 // Only exists while the playhead is inside such a span and the setting is on "Button".
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: root
 
     property color textColor: "#f5f3ee"

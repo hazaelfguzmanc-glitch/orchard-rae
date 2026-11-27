@@ -83,6 +83,8 @@ Rectangle {
         }
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: retry
             anchors.verticalCenter: parent.verticalCenter
             implicitWidth: retryRow.implicitWidth + 30

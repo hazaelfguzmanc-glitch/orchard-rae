@@ -50,6 +50,8 @@ Row {
     layoutDirection: Qt.RightToLeft
 
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: toggle
         width: 30
         height: 30
@@ -78,6 +80,8 @@ Row {
 
     // Failures are clickable; everything else is a quiet caption.
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: caption
         visible: bar.on && bar.label.length > 0
         height: 30

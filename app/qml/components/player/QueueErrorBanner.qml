@@ -60,6 +60,8 @@ Rectangle {
         }
 
         Button {
+
+            HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
             id: retryQueue
             text: qsTr("Retry loading queue")
             Layout.fillWidth: true

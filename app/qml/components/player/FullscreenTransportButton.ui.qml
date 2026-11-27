@@ -23,6 +23,10 @@ import QtQuick.Controls
 
 // Transport button: skip, shuffle, repeat, or the large play/pause toggle.
 Button {
+
+    HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: transport
 
     property string glyph: "play"

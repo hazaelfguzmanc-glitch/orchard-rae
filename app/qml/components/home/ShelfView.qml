@@ -147,6 +147,8 @@ Item {
             ]
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: shelfButton
                 required property var modelData
                 readonly property bool usable: modelData.direction < 0 ? root.canGoBack : root.canGoForward
@@ -177,6 +179,8 @@ Item {
     }
 
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: seeAll
 
         anchors.right: parent.right

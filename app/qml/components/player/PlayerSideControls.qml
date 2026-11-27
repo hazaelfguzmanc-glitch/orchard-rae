@@ -34,6 +34,8 @@ RowLayout {
     spacing: 4
 
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: videoButton
 
         // OrchardMusicVideo is supplied as a QQmlContext property by main.cpp.
@@ -75,6 +77,8 @@ RowLayout {
     }
 
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: volumeButton
 
         implicitWidth: bar.controlSize
@@ -84,8 +88,14 @@ RowLayout {
         Accessible.name: qsTr("Volume")
         ToolTip.visible: hovered
         ToolTip.delay: 500
-        ToolTip.text: qsTr("Volume")
-        onClicked: if (bar.canopy) volumePopup.visible ? volumePopup.close() : volumePopup.open()
+        ToolTip.text: bar.muted ? qsTr("Unmute") : qsTr("Mute")
+        onClicked: bar.toggleMute()
+
+        // Right click still reaches the slider.
+        TapHandler {
+            acceptedButtons: Qt.RightButton
+            onTapped: volumePopup.visible ? volumePopup.close() : volumePopup.open()
+        }
 
         // Canopy has no room for an inline slider, so the button opens a vertical one.
         WheelHandler {
@@ -98,9 +108,37 @@ RowLayout {
             }
         }
 
+        // Compact layouts hide the inline slider, so hovering the button brings
+        // the vertical one up.
+        HoverHandler {
+            id: volumeHover
+            enabled: bar.compact || bar.canopy
+            onHoveredChanged: {
+                if (hovered) {
+                    closeTimer.stop();
+                    if (!volumePopup.visible)
+                        volumePopup.open();
+                } else {
+                    closeTimer.restart();
+                }
+            }
+        }
+
+        Timer {
+            id: closeTimer
+            interval: 180
+            onTriggered: volumePopup.close()
+        }
+
         VolumePopup {
             id: volumePopup
             bar: sideControls.bar
+            onPointerInsideChanged: {
+                if (pointerInside)
+                    closeTimer.stop();
+                else if (volumePopup.visible)
+                    closeTimer.restart();
+            }
         }
 
         background: Rectangle {
@@ -183,6 +221,8 @@ RowLayout {
     }
 
     Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: queueButton
 
         implicitWidth: bar.controlSize

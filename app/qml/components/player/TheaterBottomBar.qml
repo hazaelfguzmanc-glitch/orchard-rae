@@ -204,6 +204,8 @@ Item {
             }
 
             Button {
+
+                HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
                 id: qualityButton
 
                 implicitHeight: 36

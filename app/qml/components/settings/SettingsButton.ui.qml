@@ -22,6 +22,10 @@ import QtQuick
 import QtQuick.Controls
 
 Button {
+
+    HoverHandler { cursorShape: Qt.PointingHandCursor }
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: control
     implicitHeight: 32
     leftPadding: 14

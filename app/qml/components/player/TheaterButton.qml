@@ -23,6 +23,8 @@ import QtQuick.Controls
 
 // Round icon button for the music video theater.
 Button {
+
+    HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
     id: root
 
     property string glyph: ""

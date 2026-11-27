@@ -298,6 +298,8 @@ ColumnLayout {
 
     // Card pointing at the neighbouring release; empty at either end of the history.
     component NeighbourButton: Button {
+
+        HoverHandler { cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
         id: nav
         property var release: null
         property string caption
